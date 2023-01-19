@@ -30,8 +30,8 @@ RUN riscv64-unknown-elf-gcc --help
 # Install Spike RISC-V ISA Simulator
 WORKDIR /tmp
 RUN git clone https://github.com/riscv-software-src/riscv-isa-sim.git
-RUN git checkout v1.1.0
 WORKDIR /tmp/riscv-isa-sim
+RUN git checkout v1.1.0
 RUN mkdir build
 WORKDIR /tmp/riscv-isa-sim/build
 RUN ../configure --prefix=$RISCV --with-isa=RV32IMF --with-target=riscv32-unknown-elf
