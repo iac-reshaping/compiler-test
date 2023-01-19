@@ -46,7 +46,7 @@ WORKDIR /tmp/riscv-pk
 RUN git checkout 573c858d9071a2216537f71de651a814f76ee76d
 RUN mkdir build
 WORKDIR /tmp/riscv-pk/build
-RUN ../configure --prefix=$RISCV --host=riscv64-unknown-elf --with-arch=rv32imf
+RUN ../configure --prefix=$RISCV --host=riscv64-unknown-elf --with-arch=rv32im
 RUN make
 RUN make install
 
