@@ -1,0 +1,22 @@
+name: Integration test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  Integration_test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/iac-reshaping/compiler-testing/builder:v1.0.0
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and test
+        id: test
+        timeout-minutes: 1
+        run: |
+          ./test.sh
