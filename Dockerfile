@@ -19,7 +19,7 @@ RUN apt-get install -y \
 
 # Install RISC-V Toolchain
 WORKDIR /tmp
-RUN curl --output riscv-gnu-toolchain.tar.gz -L "https://github.com/EIE2-IAC-Labs/Lab0-devtools/releases/download/v1.0.0/riscv-gnu-toolchain-2022-09-21-ubuntu-22.04.tar.gz"
+RUN curl --output riscv-gnu-toolchain.tar.gz -L "https://github.com/iac-reshaping/compiler-test/releases/download/v1.0.0/riscv-gnu-toolchain-2022-09-21-ubuntu-22.04.tar.gz"
 RUN rm -rf /opt/riscv
 RUN tar -xzf riscv-gnu-toolchain.tar.gz --directory /opt
 ENV PATH="/opt/riscv/bin:${PATH}"
@@ -34,7 +34,7 @@ WORKDIR /tmp/riscv-isa-sim
 RUN git checkout v1.1.0
 RUN mkdir build
 WORKDIR /tmp/riscv-isa-sim/build
-RUN ../configure --prefix=$RISCV --with-isa=RV32IMF --with-target=riscv32-unknown-elf
+RUN ../configure --prefix=$RISCV --with-isa=RV32IMFD --with-target=riscv32-unknown-elf
 RUN make
 RUN make install
 RUN rm -rf /tmp/riscv-isa-sim
@@ -46,7 +46,7 @@ WORKDIR /tmp/riscv-pk
 RUN git checkout 573c858d9071a2216537f71de651a814f76ee76d
 RUN mkdir build
 WORKDIR /tmp/riscv-pk/build
-RUN ../configure --prefix=$RISCV --host=riscv64-unknown-elf --with-arch=rv32im
+RUN ../configure --prefix=$RISCV --host=riscv64-unknown-elf --with-arch=rv32imfd --with-abi=ilp32d
 RUN make
 RUN make install
 
